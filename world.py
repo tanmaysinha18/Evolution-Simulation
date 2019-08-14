@@ -12,7 +12,7 @@ class World():
   def __init__(self):
     self.x_range = 45
     self.y_range = 45
-    self.grid = np.array([["a" for i in range(0,self.y_range)] for j in range(0,self.x_range)])
+    self.grid = np.array([[" " for i in range(0,self.y_range)] for j in range(0,self.x_range)])
 
   def print_world(self):
     for y in self.grid:
