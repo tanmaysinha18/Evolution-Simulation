@@ -1,7 +1,7 @@
-    import numpy as np
+import numpy as np
 import matplotlib.pyplot as plt
 
-class creature(starting_pos):
+class Creature():
     def __init__(self,starting_pos=[0,0]):
         self.starting_pos=np.array(starting_pos)
         self.health=100
@@ -15,6 +15,7 @@ class creature(starting_pos):
 
     def move(self,worldSz):
         if(self.moveflag==True):
+            self.health = self.health - 1
             self.pos[0]=np.random.randint(-1,2)+self.pos[0]
             self.pos[1]=np.random.randint(-1,2)+self.pos[1]
             if self.pos[0]<0:
