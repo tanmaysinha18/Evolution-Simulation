@@ -1,4 +1,4 @@
-import numpy as np
+    import numpy as np
 import matplotlib.pyplot as plt
 
 class creature(starting_pos):
