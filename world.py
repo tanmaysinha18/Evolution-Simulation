@@ -58,7 +58,7 @@ class World():
       creature.pos = creature.starting_pos
 
       if creature.fertility > 0:
-        new_creatures.append(Creature(creature.starting_pos))
+        new_creatures.append(Creature(creature.starting_pos,creature.speed+np.random.randint(-10,10)))
 
       if creature.health >= 0:
         new_creatures.append(creature)

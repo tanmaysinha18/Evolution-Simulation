@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from pygame import *
 
 class Creature():
-    def __init__(self,starting_pos=[0,0]):
+    def __init__(self,starting_pos=[0,0],speed=np.random.randint(10,20)):
         self.starting_pos=np.array(starting_pos)
         self.health = 500
         self.fertility=0
@@ -11,8 +11,11 @@ class Creature():
         self.moveflag=True
         self.content=False
         self.theta = 2 * np.pi * np.random.rand() - np.pi
-        self.speed = 50
-        self.color = (255,9,0)
+        if speed<0:
+            self.speed = 2
+        else:
+            self.speed=speed
+        self.color = (self.speed/50,1/(self.speed+1),0)
         self.size = 5
 
     def getPos(self):
