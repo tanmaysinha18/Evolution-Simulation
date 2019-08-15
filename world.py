@@ -55,10 +55,8 @@ class World():
   def reset_creatures(self):
     new_creatures = []
     for creature in self.creatures:
-      creature.pos = creature.starting_pos
-
       if creature.fertility > 0:
-        new_creatures.append(Creature(creature.starting_pos,creature.speed+np.random.randint(-10,10)))
+        new_creatures.append(Creature(creature.getPos(),creature.speed+np.random.randint(-10,10)))
 
       if creature.content:
         new_creatures.append(creature)
