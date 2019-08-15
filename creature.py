@@ -5,7 +5,7 @@ from pygame import *
 class Creature():
     def __init__(self,starting_pos=[0,0],speed=np.random.randint(10,20)):
         self.starting_pos=np.array(starting_pos)
-        self.health = 500
+        self.health = 100
         self.fertility=0
         self.pos=np.array(starting_pos)
         self.moveflag=True
@@ -23,7 +23,9 @@ class Creature():
 
     def move(self,worldSz):
         if(self.moveflag==True):
-            self.health = self.health - 1
+            self.health = self.health - self.speed/50
+            if self.health<=0:
+                self.moveflag=False
             self.theta = self.theta + 0.5*(np.random.rand()) - 0.25
             velocity = self.speed * np.array([np.cos(self.theta),np.sin(self.theta)])
             self.pos = self.pos + velocity * 0.1
