@@ -30,6 +30,8 @@ class Creature():
 
     def move(self,worldSz):
         if(self.moveflag==True):
+            
+            # decrease in health with every step
             self.health = self.health -self.speed/50
             if self.health<=0:
                 self.moveflag=False
