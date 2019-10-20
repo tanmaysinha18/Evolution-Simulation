@@ -20,8 +20,8 @@ class World():
     self.grid = np.array([[" " for i in range(0,self.y_range)] for j in range(0,self.x_range)])
     self.creatures = np.array([])
     # self.food = np.array([])
-    self.numBlocksx=10
-    self.numBlocksy=10
+    self.numBlocksx=50
+    self.numBlocksy=50
     self.blocksize=np.array([self.x_range//self.numBlocksx,self.y_range//self.numBlocksy])
     self.food=[]
     start=0
