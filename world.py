@@ -1,5 +1,6 @@
 import numpy as np
 from creature import *
+import numpy.linalg as LA
 
 class Food():
   def __init__(self,pos):
@@ -18,7 +19,17 @@ class World():
     self.y_range = 600
     self.grid = np.array([[" " for i in range(0,self.y_range)] for j in range(0,self.x_range)])
     self.creatures = np.array([])
-    self.food = np.array([])
+    # self.food = np.array([])
+    self.numBlocksx=10
+    self.numBlocksy=10
+    self.blocksize=np.array([self.x_range//self.numBlocksx,self.y_range//self.numBlocksy])
+    self.food=[]
+    start=0
+    for i in range(self.numBlocksx):
+      row = []
+      for j in range(self.numBlocksy):
+        row.append([])
+      self.food.append(row)        
 
   def initialize_creatures(self, number):
     for i in range(0, number):
@@ -27,13 +38,22 @@ class World():
       self.creatures=np.hstack((self.creatures,Creature([300,300])))
 
   def clear_food(self):
-    self.food = np.array([])
-
+    self.food=[]
+    for i in range(self.numBlocksx):
+      row = []
+      for j in range(self.numBlocksy):
+        row.append([])
+      self.food.append(row)        
+        
   def generate_food(self, number):
     for i in range(0,number):
-      self.food=np.hstack((self.food,Food(np.array([np.random.randint(0,self.x_range),np.random.randint(0,self.y_range)]))))
+      foodnew=[np.random.randint(0,self.x_range),np.random.randint(0,self.y_range)]
+      # print(foodnew[1]//self.numBlocksy)
+      # print(foodnew[0]//self.numBlocksx)
+      self.food[foodnew[0]//self.blocksize[0]][foodnew[1]//self.blocksize[1]].append(Food(foodnew))
+      # self.food=np.hstack((self.food,Food(np.array([np.random.randint(0,self.x_range),np.random.randint(0,self.y_range)]))))
       # self.food.append(Food(np.array[np.random.randint(0,self.x_range),np.random.randint(0,self.y_range)]))
-      self.food = sorted(self.food,key = lambda x:x.pos[0])
+      # self.food[foodnew[0]//self.numBlocksx][foodnew[1]//self.numBlocksy] = sorted(self.food[foodnew[0]//self.numBlocksx][foodnew[1]//self.numBlocksy],key = lambda x:x.pos[0])
 
   def move_creatures(self):
     for creature in self.creatures:
@@ -42,10 +62,12 @@ class World():
 
 
   def print_food(self,gameDisplay):
-    for food in self.food:
-      if not food.eaten:
-        pos = food.getPos()
-        draw.rect(gameDisplay,food.color,Rect(pos[0],pos[1],food.size,food.size))
+    for x in range(self.numBlocksx):
+      for y in range(self.numBlocksy):
+        for food in self.food[x][y]:
+          if not food.eaten:
+            pos = food.getPos()
+            draw.rect(gameDisplay,food.color,Rect(pos[0],pos[1],food.size,food.size))
 
 
   def print_creatures(self,gameDisplay):
@@ -73,39 +95,41 @@ class World():
       
       return -1
 
-    fud=[]
-    for f in self.food:
-      pos=f.getPos()
-      fud.append(pos[0])
-    fud=np.array(fud)
-    # print(fud)
     for creature in self.creatures:
       
       pos=creature.getPos()
-      index = np.searchsorted(fud,pos[0])
+      creatureXblock=pos[0]//self.blocksize[0]
+      creatureYblock=pos[1]//self.blocksize[1]
+      # index = np.searchsorted(fud,pos[0])
       # index = nearest(fud,pos[0])
       # print(fud)
-      upperbound=index
       eaten_indices = []
-      
-      while upperbound<len(fud) and fud[upperbound]<pos[0]+creature.size+2:
-      
-        if(np.linalg.norm(self.food[upperbound].pos-pos)<creature.size + self.food[0].size):
+      for idx,fud in zip(range(len(self.food[creatureXblock][creatureYblock])),self.food[creatureXblock][creatureYblock]):
+        foodpos=fud.getPos()
+        if LA.norm(foodpos-pos)<creature.size+2:
           creature.eat()
-          self.food[upperbound].eaten = True
-          eaten_indices.append(upperbound)
-      
-        upperbound=upperbound+1
-      lowerbound=index-1
-      
-      while lowerbound>=0 and fud[lowerbound]>pos[0]-creature.size:
-      
-        if(np.linalg.norm(self.food[lowerbound].pos-pos)<creature.size + self.food[0].size):
-          creature.eat()
-          self.food[lowerbound].eaten=True
-          eaten_indices.append(lowerbound)
-      
-        lowerbound=lowerbound-1
+          eaten_indices.append(idx)
 
-      self.food = np.delete(self.food,eaten_indices,0)
-      fud = np.delete(fud,eaten_indices,0)
+      # upperbound=index
+      # eaten_indices = []
+      
+      # while upperbound<len(fud) and fud[upperbound]<pos[0]+creature.size+2:
+      
+      #   if(np.linalg.norm(self.food[upperbound].pos-pos)<creature.size + self.food[0].size):
+      #     creature.eat()
+      #     self.food[upperbound].eaten = True
+      #     eaten_indices.append(upperbound)
+      
+      #   upperbound=upperbound+1
+      # lowerbound=index-1
+      
+      # while lowerbound>=0 and fud[lowerbound]>pos[0]-creature.size:
+      
+      #   if(np.linalg.norm(self.food[lowerbound].pos-pos)<creature.size + self.food[0].size):
+      #     creature.eat()
+      #     self.food[lowerbound].eaten=True
+      #     eaten_indices.append(lowerbound)
+      
+      #   lowerbound=lowerbound-1
+
+      self.food[creatureXblock][creatureYblock] = np.ndarray.tolist(np.delete(self.food[creatureXblock][creatureYblock],eaten_indices,0))

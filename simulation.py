@@ -25,7 +25,7 @@ number_of_days = 100
 number_of_moves = 100
 number_of_food = 100
 number_of_steps = 300
-number_of_creatures = 50
+number_of_creatures = 500
 
 world.initialize_creatures(number_of_creatures)
 
@@ -33,7 +33,7 @@ world.initialize_creatures(number_of_creatures)
 # start 
 for day in range(0,number_of_days):
   creature_stats.append(len(world.creatures))
-  world.clear_food()
+  # world.clear_food()
   steps_taken = 0
   world.generate_food(number_of_food)
   number_of_food=number_of_food-1

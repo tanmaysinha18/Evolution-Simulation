@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from pygame import *
 
 class Creature():
-    def __init__(self,starting_pos=[0,0],speed=np.random.randint(10,20)):
+    def __init__(self,starting_pos=[0,0],speed=np.random.randint(10,20),size=np.random.randint(1,10)):
         def colorfunc(speed):
             if speed<10:
                 return (10,255,0)
@@ -18,6 +18,7 @@ class Creature():
         self.moveflag=True
         self.content=False
         self.theta = 2 * np.pi * np.random.rand() - np.pi
+        self.size = size 
         if speed<0:
             self.speed = 2
         else:
