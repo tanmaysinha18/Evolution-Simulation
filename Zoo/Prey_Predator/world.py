@@ -139,16 +139,16 @@ class World():
     for i in range(self.numBlocksx):
       for j in range(self.numBlocksy):
         for creature in self.prey_blocks[i][j]:
-      
           pos=creature.getPos()
           creatureXblock=pos[0]//self.blocksize[0]
           creatureYblock=pos[1]//self.blocksize[1]
           eaten_indices = []
           for idx,fud in zip(range(len(self.food[creatureXblock][creatureYblock])),self.food[creatureXblock][creatureYblock]):
-            foodpos=fud.getPos()
-            if LA.norm(foodpos-np.array(pos))<creature.size+2:
-              creature.eat()
-              eaten_indices.append(idx)
+            if creature.fertility<100:
+              foodpos=fud.getPos()
+              if LA.norm(foodpos-np.array(pos))<creature.size+2:
+                creature.eat()
+                eaten_indices.append(idx)
           self.food[creatureXblock][creatureYblock] = np.ndarray.tolist(np.delete(self.food[creatureXblock][creatureYblock],eaten_indices,0))
 
     for predator in self.predators:
@@ -157,11 +157,12 @@ class World():
       creatureYblock=pos[1]//self.blocksize[1]
       eaten_indices = []
       for idx,prey in zip(range(len(self.prey_blocks[creatureXblock][creatureYblock])),self.prey_blocks[creatureXblock][creatureYblock]):
-        foodpos=prey.getPos()
-        if LA.norm(foodpos-np.array(pos))<predator.size+2:
-          # print(prey)
-          predator.eat()
-          eaten_indices.append(idx)
-      # print(eaten_indices)
+        if predator.fertility<100:
+          foodpos=prey.getPos()
+          if LA.norm(foodpos-np.array(pos))<predator.size+2:
+            # print(prey)
+            predator.eat()
+            eaten_indices.append(idx)
+        # print(eaten_indices)
 
       self.prey_blocks[creatureXblock][creatureYblock] = np.ndarray.tolist(np.delete(self.prey_blocks[creatureXblock][creatureYblock],eaten_indices,0))

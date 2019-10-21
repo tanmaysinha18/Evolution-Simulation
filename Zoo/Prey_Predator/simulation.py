@@ -31,10 +31,10 @@ predator_stats = []
 
 number_of_days = 1000
 number_of_moves = 100
-number_of_food = 200
+number_of_food = 1000
 number_of_steps = 300
-number_of_prey = 100
-number_of_predators = 20
+number_of_prey = 200
+number_of_predators = 10
 
 world.initialize_creatures(number_of_prey,number_of_predators)
 
@@ -45,7 +45,7 @@ for day in range(0,number_of_days):
   steps_taken = 0
   world.generate_food(number_of_food)
   # number_of_food=number_of_food-1
-  number_of_food = max(5,int(np.random.normal(100,25)))
+  # number_of_food = q
   while len(world.food) > 0 and not crashed and steps_taken < number_of_steps:
 
     for i in event.get():
