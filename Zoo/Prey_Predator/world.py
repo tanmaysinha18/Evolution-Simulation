@@ -59,10 +59,18 @@ class World():
         row.append([])
       self.food.append(row)        
         
-  def generate_food(self, number):
-    for i in range(0,number):
-      foodnew=[np.random.randint(0,self.x_range),np.random.randint(0,self.y_range)]
-      self.food[foodnew[0]//self.blocksize[0]][foodnew[1]//self.blocksize[1]].append(Food(foodnew))
+  def generate_food(self, num_trees, num_forests, forest_epicenter = [-1,-1]):
+    if forest_epicenter[0]==-1:
+      forest_epicenter = l = [(np.random.uniform(0, self.x_range), np.random.uniform(0, self.y_range)) for i in range(num_forests)]
+    forest_density = np.array([(np.random.randint(1,num_trees//num_forests)) for i in range(num_forests)])
+    remaining = num_trees - np.sum(forest_density)
+    forest_density = (remaining//num_forests)*np.ones(forest_density.shape)+forest_density
+    
+    for i in range(num_forests):
+      for j in range(int(forest_density[i])):
+        foodnew=[(forest_epicenter[i][0]+np.random.normal(0,10))%self.x_range,(forest_epicenter[i][1]+np.random.normal(0,10))%self.y_range]
+        self.food[int(foodnew[0])//self.blocksize[0]][int(foodnew[1])//self.blocksize[1]].append(Food(foodnew))
+    return forest_epicenter
 
   def move_creatures(self):
     for i in range(self.numBlocksx):

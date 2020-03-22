@@ -35,6 +35,8 @@ number_of_food = 1000
 number_of_steps = 300
 number_of_prey = 200
 number_of_predators = 10
+number_of_forests = 5
+forest_epicenters = [-1,-1]
 
 world.initialize_creatures(number_of_prey,number_of_predators)
 
@@ -43,7 +45,7 @@ for day in range(0,number_of_days):
   predator_stats.append(len(world.predators))
   # world.clear_food()
   steps_taken = 0
-  world.generate_food(number_of_food)
+  forest_epicenters = world.generate_food(number_of_food,number_of_forests,forest_epicenters)
   # number_of_food=number_of_food-1
   # number_of_food = q
   while len(world.food) > 0 and not crashed and steps_taken < number_of_steps:
