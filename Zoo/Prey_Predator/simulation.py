@@ -35,7 +35,7 @@ number_of_food = 1000
 number_of_steps = 300
 number_of_prey = 200
 number_of_predators = 10
-number_of_forests = 5
+number_of_forests = 7
 forest_epicenters = [-1,-1]
 
 world.initialize_creatures(number_of_prey,number_of_predators)

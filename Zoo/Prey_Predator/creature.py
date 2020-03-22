@@ -30,7 +30,7 @@ class Creature():
         return [int(self.pos[0]),int(self.pos[1])]
 
     def move(self,worldSz):
-        if(self.moveflag==True):
+        # if(self.moveflag==True):
             
             # decrease in health with every step
             self.health = self.health -self.speed/50

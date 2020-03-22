@@ -76,7 +76,7 @@ class World():
     for i in range(self.numBlocksx):
       for j in range(self.numBlocksy):
         for prey in self.prey_blocks[i][j]:
-          if prey.moveflag:
+          # if prey.moveflag:
             old_pos = np.array(prey.getPos())
             prey.move((self.x_range,self.y_range))
             new_pos = prey.getPos()
@@ -89,7 +89,7 @@ class World():
               self.prey_blocks[new_block[0]][new_block[1]].append(prey)
     
     for predator in self.predators:
-      if predator.moveflag:
+      # if predator.moveflag:
         predator.move((self.x_range,self.y_range))
 
 
