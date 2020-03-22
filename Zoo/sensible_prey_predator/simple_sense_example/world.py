@@ -23,8 +23,8 @@ class World():
     self.prey = np.array([])
     self.predators = np.array([])
     # self.food = np.array([])
-    self.numBlocksx=10
-    self.numBlocksy=10
+    self.numBlocksx=5
+    self.numBlocksy=5
     self.blocksize=np.array([self.x_range//self.numBlocksx,self.y_range//self.numBlocksy])
     self.food=[]
     self.prey_blocks = []
@@ -179,7 +179,7 @@ class World():
                 eaten_indices.append(idx)
                 creature.towards_prey_velocity = np.array([0,0])
             if idx == len(self.food[creatureXblock][creatureYblock])-1 and creature.fertility<100:
-              creature.towards_prey_velocity = (+np.array(minpos) - np.array(pos))/LA.norm(np.array(minpos) - np.array(pos))
+              creature.towards_prey_velocity = (np.array(minpos) - np.array(pos))/LA.norm(np.array(minpos) - np.array(pos))
           self.food[creatureXblock][creatureYblock] = np.ndarray.tolist(np.delete(self.food[creatureXblock][creatureYblock],eaten_indices,0))
 
     for predator in self.predators:

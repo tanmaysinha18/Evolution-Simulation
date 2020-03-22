@@ -45,7 +45,7 @@ class Creature():
             if self.health<=0:
                 self.moveflag=False
             # self.theta = self.theta + 0.5*(np.random.rand()) - 0.25
-            self.velocity = self.velocity+np.random.normal(0,1,self.velocity.shape) + 10000*self.prey_sense*self.towards_prey_velocity +self.run_from_predator_sense*self.away_from_predator_velocity
+            self.velocity = self.velocity+np.random.normal(0,1,self.velocity.shape) + 10*self.prey_sense*self.towards_prey_velocity +self.run_from_predator_sense*self.away_from_predator_velocity
             self.away_from_predator_velocity = np.array([0,0])
             self.towards_prey_velocity = np.array([0,0])
             multiplier = self.speed/np.linalg.norm(self.velocity)
