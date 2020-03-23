@@ -26,7 +26,7 @@ class World():
     self.food=[]
 
     #Virus characteristics
-    self.virus = {"infectivity":0.05,"life":1,"mortality":0.05}
+    self.virus = {"infectivity":0.07,"life":10,"mortality":0.02}
 
     start=0
     for i in range(self.numBlocksx):
