@@ -33,7 +33,7 @@ class Prey(Creature):
 
 
   def move(self,worldSz):
-    # if(self.moveflag==True or (self.away_from_predator_velocity[0]!=0 and self.away_from_predator_velocity[1]!=0)):
+    if(self.moveflag==True or (self.away_from_predator_velocity[0]!=0 and self.away_from_predator_velocity[1]!=0)):
         
         # decrease in health with every step
         self.health = self.health -self.speed/50
