@@ -31,11 +31,11 @@ predator_stats = []
 
 number_of_days = 1000
 number_of_moves = 100
-number_of_food = 50
+number_of_food = 200
 number_of_steps = 300
 number_of_prey = 100
-number_of_predators = 1
-number_of_forests = 5
+number_of_predators = 10
+number_of_forests = 7
 forest_epicenters = [-1]*number_of_forests
 
 world.initialize_creatures(number_of_prey,number_of_predators)
@@ -65,19 +65,19 @@ for day in range(0,number_of_days):
           plt.show()
 
     world.move_creatures()
+    world.detect_eat(gameDisplay)
 
     gameDisplay.fill((255,255,255))
-    world.detect_eat(gameDisplay)
 
     world.print_food(gameDisplay)
     world.print_creatures(gameDisplay)
     display.update()
     clock.tick(60)
     steps_taken = steps_taken + 1
-  # plot_stats(prey_stats,predator_stats)
+  plot_stats(prey_stats,predator_stats)
   if crashed:
     break
-  # world.reset_creatures()
+  world.reset_creatures()
 
 plt.grid(True)
 # plt.show()

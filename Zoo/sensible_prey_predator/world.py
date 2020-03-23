@@ -179,7 +179,8 @@ class World():
                 eaten_indices.append(idx)
                 creature.towards_prey_velocity = np.array([0,0])
             if idx == len(self.food[creatureXblock][creatureYblock])-1 and creature.fertility<100:
-              creature.towards_prey_velocity = (+np.array(minpos) - np.array(pos))/LA.norm(np.array(minpos) - np.array(pos))
+              creature.towards_prey_velocity = (np.array(minpos) - np.array(pos))/LA.norm(np.array(minpos) - np.array(pos))
+
           self.food[creatureXblock][creatureYblock] = np.ndarray.tolist(np.delete(self.food[creatureXblock][creatureYblock],eaten_indices,0))
 
     for predator in self.predators:
@@ -191,10 +192,9 @@ class World():
       minpos = np.array([0,0])
       minprey = 0
       for idx,prey in zip(range(len(self.prey_blocks[creatureXblock][creatureYblock])),self.prey_blocks[creatureXblock][creatureYblock]):
-        if predator.fertility<100 or predator.fertility>=0:
+        if predator.fertility<100:
           foodpos=prey.getPos()
           dist = LA.norm(foodpos-np.array(pos))
-          print(len(self.prey_blocks[creatureXblock][creatureYblock]))
           if dist<mindist:
                 mindist = dist
                 minpos = foodpos
@@ -205,12 +205,9 @@ class World():
             eaten_indices.append(idx)
             predator.towards_prey_velocity = np.array([0,0])
         
-        if idx == len(self.prey_blocks[creatureXblock][creatureYblock])-1:
-          print(mindist)
+        if idx == len(self.prey_blocks[creatureXblock][creatureYblock])-1 and predator.fertility<100:
           predator.towards_prey_velocity = (np.array(minpos) - np.array(pos))/LA.norm(np.array(minpos) - np.array(pos))
           minprey.away_from_predator_velocity = (-np.array(pos) + np.array(minpos))/LA.norm(-np.array(pos) + np.array(minpos))
-          draw.circle(gameDisplay,(1,0,0),minpos,10)
-          print(minpos)
         # print(eaten_indices)
 
       self.prey_blocks[creatureXblock][creatureYblock] = np.ndarray.tolist(np.delete(self.prey_blocks[creatureXblock][creatureYblock],eaten_indices,0))

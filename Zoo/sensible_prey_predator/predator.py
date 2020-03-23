@@ -1,7 +1,7 @@
 from creature import *
 
 class Predator(Creature):
-  def __init__(self,starting_pos=[0,0],speed=np.random.randint(10,20),size=np.random.randint(1,10),prey_sense = np.random.uniform(50,100)):
+  def __init__(self,starting_pos=[0,0],speed=np.random.randint(10,20),size=np.random.randint(1,10),prey_sense = np.random.uniform(0,20)):
     super(Predator,self).__init__(starting_pos,speed,size)
     self.color = (0,0,0)
 
