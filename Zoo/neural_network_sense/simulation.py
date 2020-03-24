@@ -74,7 +74,7 @@ for day in range(0,number_of_days):
     display.update()
     clock.tick(60)
     steps_taken = steps_taken + 1
-  # plot_stats(prey_stats,predator_stats)
+  plot_stats(prey_stats,predator_stats)
   if crashed:
     break
   world.reset_creatures()
