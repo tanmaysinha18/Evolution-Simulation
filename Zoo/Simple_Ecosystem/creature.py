@@ -3,6 +3,10 @@ import matplotlib.pyplot as plt
 from pygame import *
 
 class Creature():
+    '''
+    Creature object class.
+    '''
+
     def __init__(self,starting_pos=[0,0],speed=np.random.randint(10,20),size=np.random.randint(1,10)):
         def colorfunc(speed):
             if speed<10:
@@ -30,6 +34,11 @@ class Creature():
         return self.pos
 
     def move(self,worldSz):
+        '''
+        Move function for the creature. 
+        Each creature moves by randomly perturbing it's angle by a few radians, and then moving in the direction 
+        determined by that angle.
+        '''
         if(self.moveflag==True):
             
             # decrease in health with every step
@@ -64,6 +73,9 @@ class Creature():
             self.pos = np.array([int(self.pos[0]),int(self.pos[1])])
     
     def eat(self):
+        '''
+        Function to eat a given food. Called when a collision between food and creature is detected.
+        '''
         # print("EATEN")
         if (self.fertility<100):
             if (self.content==False):
@@ -73,6 +85,9 @@ class Creature():
                 self.fertility=100
     
     def newIteration(self):
+        '''
+        Setup the creature for the new iteration.
+        '''
         if (self.content==True):
             self.health=100
             self.content=False

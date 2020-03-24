@@ -5,6 +5,10 @@ from pygame import *
 from matplotlib import pyplot as plt
 
 def plot_stats(creatures,creature_stats):
+  '''
+  Function to add the plots of the number of creatures
+  '''
+
   global fig,ax1,ax2
   plt.cla()
   plt.plot(creature_stats)

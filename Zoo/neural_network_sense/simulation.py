@@ -34,7 +34,7 @@ number_of_moves = 100
 number_of_food = 200
 number_of_steps = 300
 number_of_prey = 100
-number_of_predators = 10
+number_of_predators = 25
 number_of_forests = 7
 forest_epicenters = [-1]*number_of_forests
 

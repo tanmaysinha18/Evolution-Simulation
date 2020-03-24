@@ -3,6 +3,10 @@ from creature import *
 import numpy.linalg as LA
 
 class Food():
+  '''
+  A class for the food object.
+  '''
+
   def __init__(self,pos):
     self.pos = pos
     self.value = 100
@@ -14,6 +18,9 @@ class Food():
     return self.pos
 
 class World():
+  '''
+  The world object
+  '''
   def __init__(self):
     self.x_range = 600
     self.y_range = 600
@@ -32,12 +39,18 @@ class World():
       self.food.append(row)        
 
   def initialize_creatures(self, number):
+    '''
+    Initialize the world with number of creatures.
+    '''
     for i in range(0, number):
       # self.creatures.append(Creature([0,np.random.randint(0,self.y_range)]))
       # self.creatures=np.hstack((self.creatures,Creature([0,np.random.randint(0,self.y_range)])))
       self.creatures=np.hstack((self.creatures,Creature([300,300])))
 
   def clear_food(self):
+    '''
+    Clear all the food currently in the world.
+    '''
     self.food=[]
     for i in range(self.numBlocksx):
       row = []
@@ -46,6 +59,10 @@ class World():
       self.food.append(row)        
         
   def generate_food(self, number):
+    '''
+    Generate the food in the world.
+    '''
+
     for i in range(0,number):
       foodnew=[np.random.randint(0,self.x_range),np.random.randint(0,self.y_range)]
       # print(foodnew[1]//self.numBlocksy)
@@ -56,12 +73,18 @@ class World():
       # self.food[foodnew[0]//self.numBlocksx][foodnew[1]//self.numBlocksy] = sorted(self.food[foodnew[0]//self.numBlocksx][foodnew[1]//self.numBlocksy],key = lambda x:x.pos[0])
 
   def move_creatures(self):
+    '''
+    Move all the creatures present in the world.
+    '''
     for creature in self.creatures:
       if creature.moveflag:
         creature.move((self.x_range,self.y_range))
 
 
   def print_food(self,gameDisplay):
+    '''
+    Print function for the food present; draws a rectangle(representing food) in the gameDisplay.
+    '''
     for x in range(self.numBlocksx):
       for y in range(self.numBlocksy):
         for food in self.food[x][y]:
@@ -71,10 +94,18 @@ class World():
 
 
   def print_creatures(self,gameDisplay):
+    '''
+    Print function for the creatures present; draws a circle corresponding to the creature's position in gameDisplay.
+    '''
     for creature in self.creatures:
       draw.circle(gameDisplay,creature.color,creature.getPos(),creature.size)
 
   def reset_creatures(self):
+    '''
+    Function which determines the number and kinds of creatures present in the next iteration.
+    First, checks which creatures survive, then reproduces the creatures which have more than enough food(also
+    mutates randomly).
+    '''
     new_creatures = []
     for creature in self.creatures:
       if creature.fertility > 0:
@@ -88,6 +119,9 @@ class World():
     self.creatures = np.array(new_creatures)
 
   def detect_eat(self):
+    '''
+    Function that determines whether an animal has eaten any food.
+    '''
     def nearest(arr,x):
       for i in range(0,len(arr)):
         if arr[i] >= x:
