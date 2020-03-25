@@ -4,13 +4,14 @@ from os import system
 from pygame import *
 from matplotlib import pyplot as plt
 
-def plot_stats(prey_stats,predator_stats):
+def plot_stats(prey_stats,predator_stats,day):
   global fig,ax1,ax2
   plt.cla()
   plt.plot(prey_stats,label = "Prey")
   plt.plot(predator_stats,label = "Predator")
   plt.legend()
   plt.grid(True)
+  # plt.savefig()
   plt.pause(0.1)
   
 
@@ -74,7 +75,7 @@ for day in range(0,number_of_days):
     display.update()
     clock.tick(60)
     steps_taken = steps_taken + 1
-  plot_stats(prey_stats,predator_stats)
+  plot_stats(prey_stats,predator_stats,day)
   if crashed:
     break
   world.reset_creatures()
