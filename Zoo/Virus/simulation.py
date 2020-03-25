@@ -66,6 +66,8 @@ for day in range(0,number_of_days):
     world.print_creatures(gameDisplay)
     world.print_virus(gameDisplay)
     display.update()
+    # if steps_taken%2 == 0:
+    #   image.save(gameDisplay, 'images/day_'+str(day)+'_'+str(steps_taken)+'.png')
     clock.tick(60)
     steps_taken = steps_taken + 1
   plot_stats(uninfected_creature_stats,infected_creature_stats,dead_creature_stats)

@@ -72,8 +72,6 @@ for day in range(0,number_of_days):
     world.print_food(gameDisplay)
     world.print_creatures(gameDisplay)
     display.update()
-    # if steps_taken%2 == 0:
-    #   image.save(gameDisplay, 'images/day_'+str(day)+'_'+str(steps_taken)+'.png')
     clock.tick(60)
     steps_taken = steps_taken + 1
   # plot_stats(prey_stats,predator_stats)
