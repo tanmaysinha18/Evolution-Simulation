@@ -44,7 +44,18 @@ class Creature():
             self.health = self.health -self.speed/50
             if self.health<=0:
                 self.moveflag=False
-            # self.theta = self.theta + 0.5*(np.random.rand()) - 0.25
+
+
+            '''
+                here,
+                velocity = random velocity + alpha x velocity(towards prey) + beta x velocity(away from predator)
+
+                and,
+                alpha = sense of the creature to detect prey (food is the prey for prey)
+                beta = sense of the creature to detect predator (predator has 0 velocity(away from predator))
+
+                alpha and beta are the elements that grow genetically
+            '''   
             self.velocity = self.velocity+np.random.normal(0,1,self.velocity.shape) + self.prey_sense*self.towards_prey_velocity +self.run_from_predator_sense*self.away_from_predator_velocity
             self.away_from_predator_velocity = np.array([0,0])
             self.towards_prey_velocity = np.array([0,0])
