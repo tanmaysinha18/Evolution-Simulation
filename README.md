@@ -32,12 +32,7 @@ A pygame window will pop up and the simulation begins. Many variables that can b
 
 # Contribute
 
-We will be glad to receive support and new ideas from our visitors. If you find any problem/bug in the code, feel free to raise an issue and/or a pull request after resolving it. Given that this is a fun project, all creative ideas are welcome. A few major things in our minds are
-
-- Code optimization
-- Visualize using unity
-- Better Graphs
-- Making more simulations with different rules and organisms
+We will be glad to receive support and new ideas from our visitors. If you find any problem/bug in the code, feel free to raise an issue and/or a pull request after resolving it. Given that this is a fun project, all creative ideas are welcome. We have also listed some of the indeas with "enhancement" tag in issues.
 
 # Team
 - [Tanmay Kumar Sinha][tks]
