@@ -3,6 +3,9 @@ from world import *
 from os import system
 from pygame import *
 from matplotlib import pyplot as plt
+from analyse import *
+from operator import add
+from functools import reduce
 
 def plot_stats(prey_stats,predator_stats):
   global fig,ax1,ax2
@@ -57,12 +60,15 @@ for day in range(0,number_of_days):
         if i.unicode == "p":
           asdf = input()
         if i.unicode == "h":
-          c_speedData=[]
-          for c in world.prey:
-            c_speedData.append(c.speed)
-          plt.cla()
-          plt.hist(c_speedData,np.linspace(0,100,100))
-          plt.show()
+          # print(reduce(add,world.prey_blocks))
+          prey_sense(world.prey_blocks, world.num_prey, world.numBlocksx,world.numBlocksy)
+          predator_sense(world.predators)
+          # c_speedData=[]
+          # for c in world.prey:
+          #   c_speedData.append(c.speed)
+          # plt.cla()
+          # plt.hist(c_speedData,np.linspace(0,100,100))
+          # plt.show()
 
     world.move_creatures()
     world.detect_eat(gameDisplay)
@@ -75,6 +81,7 @@ for day in range(0,number_of_days):
     clock.tick(60)
     steps_taken = steps_taken + 1
   plot_stats(prey_stats,predator_stats)
+
   if crashed:
     break
   world.reset_creatures()

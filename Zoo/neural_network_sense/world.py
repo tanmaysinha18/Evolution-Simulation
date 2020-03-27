@@ -212,8 +212,8 @@ class World():
             predator.towards_prey_velocity = np.array([0,0])
         
         if idx == len(self.prey_blocks[creatureXblock][creatureYblock])-1 and predator.fertility<100:
-          predator.towards_prey_velocity = (np.array(minpos) - np.array(pos))/LA.norm(np.array(minpos) - np.array(pos))
-          minprey.away_from_predator_velocity = (-np.array(pos) + np.array(minpos))/LA.norm(-np.array(pos) + np.array(minpos))
+          predator.towards_prey_velocity = (np.array(minpos) - np.array(pos))/(LA.norm(np.array(minpos) - np.array(pos))+0.0001)
+          minprey.away_from_predator_velocity = (-np.array(pos) + np.array(minpos))/(LA.norm(-np.array(pos) + np.array(minpos))+0.0001)
         # print(eaten_indices)
 
       self.prey_blocks[creatureXblock][creatureYblock] = np.ndarray.tolist(np.delete(self.prey_blocks[creatureXblock][creatureYblock],eaten_indices,0))

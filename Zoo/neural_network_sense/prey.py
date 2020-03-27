@@ -31,6 +31,11 @@ class Prey(Creature):
     x = x/(np.linalg.norm(x)+0.001)
     return x.reshape(2,)
 
+  def compute_nn_food_custom(self,x):
+    x = self.nn_food.forward(x.reshape(4,1))
+    x = x/(np.linalg.norm(x)+0.001)
+    return x.reshape(2,)
+
 
   def move(self,worldSz):
     if(self.moveflag==True or (self.away_from_predator_velocity[0]!=0 and self.away_from_predator_velocity[1]!=0)):
