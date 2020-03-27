@@ -32,7 +32,13 @@ A pygame window will pop up and the simulation begins. Many variables that can b
 
 # Contribute
 
-We will be glad to receive support and new ideas from our visitors. If you find any problem/bug in the code, feel free to raise an issue and/or a pull request after resolving it. Given that this is a fun project, all creative ideas are welcome. We have also listed some of the indeas with "enhancement" tag in issues.
+We will be glad to receive support and new ideas from our visitors. If you find any problem/bug in the code, feel free to raise an issue and/or a pull request after resolving it. Given that this is a fun project, all creative ideas are welcome. We have also listed some of the ideas with "enhancement" tag in issues.
+
+# How it looks #
+below are some gifs to show how the code actually looks when it runs... these gifs might nor be up to date.
+
+### Simple Ecosystem ###
+![Simple Ecosystem](Zoo/Simple_Ecosystem/simple_Env.gif)
 
 # Team
 - [Tanmay Kumar Sinha][tks]
