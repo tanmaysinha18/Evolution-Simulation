@@ -40,6 +40,17 @@ below are some gifs to show how the code actually looks when it runs... these gi
 ### Simple Ecosystem ###
 ![Simple Ecosystem](Zoo/Simple_Ecosystem/simple_Env.gif)
 
+### Prey-Predator Ecosystem ###
+![Prey-predator](Zoo/Prey_Predator/prey_predator.gif)
+
+
+### Prey-Predator with sense of surroundings ###
+![sense Prey-predator](Zoo/sensible_prey_predator/sense.gif)
+
+### Prey-Predator with sense (using neural networks) of surroundings ###
+![nn_sense Prey-predator](Zoo/neural_network_sense/nn_sense.gif)
+
+
 # Team
 - [Tanmay Kumar Sinha][tks]
 - [Chaitanya Kharyal][ck]
