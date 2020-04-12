@@ -63,6 +63,8 @@ for day in range(0,number_of_days):
           plt.grid(True)
           plt.plot(creature_stats)
           plt.show()
+    if crashed:
+      exit()
     
     world.move_creatures()
     world.detect_eat()
