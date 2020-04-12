@@ -55,11 +55,13 @@ for day in range(0,number_of_days):
           crashed = True
         if i.unicode == "p":
           asdf = input()
-        if i.unicode=="s":
-          plt.grid(True)
-          plt.plot(creature_stats)
-          plt.show()
-    
+        # if i.unicode=="s":
+        #   plt.grid(True)
+        #   plt.plot(creature_stats)
+        #   plt.show()
+    if crashed:
+      exit()
+      
     world.move_creatures()
 
     gameDisplay.fill((255,255,255))
@@ -71,11 +73,10 @@ for day in range(0,number_of_days):
     clock.tick(60)
     steps_taken = steps_taken + 1
   plot_stats(uninfected_creature_stats,infected_creature_stats,dead_creature_stats)
-  if crashed:
-    break
+    
   world.reset_creatures()
   world.reset_virus()
 
-plt.grid(True)
-plt.plot(creature_stats)
-plt.show()
+# plt.grid(True)
+# plt.plot(creature_stats)
+# plt.show()
