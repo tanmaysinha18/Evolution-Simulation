@@ -64,6 +64,8 @@ for day in range(0,number_of_days):
           plt.cla()
           plt.hist(c_speedData,np.linspace(0,100,100))
           plt.show()
+    if crashed:
+        exit()
 
     world.move_creatures()
     world.detect_eat(gameDisplay)
