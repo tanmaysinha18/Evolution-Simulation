@@ -19,9 +19,9 @@ class model_simple_prey():
         '''
             x is a 4x1 vector
         '''
-        x = self.weights[:,:4].T.dot(x)
-        x = self.weights[:,4:8].T.dot(x)
-        x = self.weights[:,8:].T.dot(x)
+        x = np.tanh(self.weights[:,:4].T.dot(x))
+        x = np.tanh(self.weights[:,4:8].T.dot(x))
+        x = np.tanh(self.weights[:,8:].T.dot(x))
         return x
 
     def get_weights(self):
@@ -50,9 +50,9 @@ class model_simple_predator():
         '''
             x is a 4x1 vector
         '''
-        x = self.weights[:,:2].T.dot(x)
-        x = self.weights[:,2:4].T.dot(x)
-        x = self.weights[:,4:].T.dot(x)
+        x = np.tanh(self.weights[:,:2].T.dot(x))
+        x = np.tanh(self.weights[:,2:4].T.dot(x))
+        x = np.tanh(self.weights[:,4:].T.dot(x))
         return x
 
     def get_weights(self):
